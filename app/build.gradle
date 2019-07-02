@@ -1,0 +1,62 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+
+android {
+
+    signingConfigs {
+        release {
+            keyAlias 'antiless@rank'
+            keyPassword 'Scott@Android'
+            storeFile file('vpnrank.jks')
+            storePassword 'Scott@Android'
+        }
+    }
+    defaultConfig {
+        applicationId "com.antiless.vpnrank"
+        multiDexEnabled true
+    }
+
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError false
+    }
+    dexOptions {
+        preDexLibraries false
+        jumboMode true
+        maxProcessCount 8
+        javaMaxHeapSize "8g"
+    }
+    aaptOptions {
+        cruncherEnabled = false
+        useNewCruncher = false
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+//            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
+        debug {
+            signingConfig signingConfigs.release
+            jniDebuggable true
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation deps.kotlin.stdlib
+
+    implementation deps.support.annotations
+    implementation deps.support.app_compat
+    implementation deps.support.design
+    implementation deps.support.recyclerview
+    implementation deps.support.cardview
+    implementation deps.constraint_layout
+    implementation deps.multidex
+
+    implementation deps.retrofit
+
+}
