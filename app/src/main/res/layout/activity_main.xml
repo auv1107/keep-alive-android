@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.antiless.vpnrank.MainActivity">
+    tools:context="com.antiless.template.MainActivity">
 
     <!-- Toolbar -->
     <!-- app:elevation = "0dp" // 去除阴影效果 -->

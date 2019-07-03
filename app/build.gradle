@@ -5,15 +5,9 @@ apply plugin: 'kotlin-kapt'
 android {
 
     signingConfigs {
-        release {
-            keyAlias 'antiless@rank'
-            keyPassword 'Scott@Android'
-            storeFile file('vpnrank.jks')
-            storePassword 'Scott@Android'
-        }
     }
     defaultConfig {
-        applicationId "com.antiless.vpnrank"
+        applicationId "com.antiless.template"
         multiDexEnabled true
     }
 
@@ -36,10 +30,10 @@ android {
         release {
             minifyEnabled false
 //            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            signingConfig signingConfigs.release
+//            signingConfig signingConfigs.release
         }
         debug {
-            signingConfig signingConfigs.release
+//            signingConfig signingConfigs.release
             jniDebuggable true
         }
     }
@@ -58,5 +52,7 @@ dependencies {
     implementation deps.multidex
 
     implementation deps.retrofit
+
+    implementation 'com.fanjun:keeplive:1.1.12'
 
 }
