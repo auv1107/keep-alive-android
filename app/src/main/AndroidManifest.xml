@@ -20,6 +20,22 @@
         </activity>
         <service android:name=".service.DoNothingService"
             android:process=":donothing"/>
+
+        <!--设备管理-->
+        <receiver
+            android:name=".DevicePolicyReceiver"
+            android:permission="android.permission.BIND_DEVICE_ADMIN">
+            <meta-data
+                android:name="android.app.device_admin"
+                android:resource="@xml/device_admin" />
+
+            <intent-filter>
+                <action android:name="android.app.action.DEVICE_ADMIN_ENABLED" />
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <category android:name="android.intent.category.HOME" />
+            </intent-filter>
+        </receiver>
+        <!--设备管理 END-->
     </application>
 
 </manifest>

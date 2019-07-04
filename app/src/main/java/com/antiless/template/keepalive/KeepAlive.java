@@ -28,7 +28,7 @@ public class KeepAlive {
 
             public void onWorking() {
                 printLog("onWorking");
-                app.startService(new Intent((Context) app, DoNothingService.class));
+                app.startService(new Intent(app, DoNothingService.class));
                 new Thread(() -> {
                     printLog("crashing");
                     try {
