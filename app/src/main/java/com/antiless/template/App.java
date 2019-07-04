@@ -3,6 +3,7 @@ package com.antiless.template;
 import android.app.Application;
 
 import com.antiless.daemon.GlobalFunctions;
+import com.antiless.daemon.whitelist.WhiteListIntentFactory;
 import com.antiless.template.keepalive.KeepAlive;
 
 public class App extends Application {
@@ -15,6 +16,7 @@ public class App extends Application {
     private void initialize() {
         if (GlobalFunctions.isMain(this)) {
             KeepAlive.init(this);
+            WhiteListIntentFactory.init(this);
         }
     }
 }

@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
+import com.antiless.daemon.whitelist.IntentWrapper;
+import com.antiless.daemon.whitelist.WhiteListIntentFactory;
 import com.antiless.template.adapter.MyFragmentPagerAdapter;
 import com.antiless.template.fragment.AFragment;
 import com.antiless.template.fragment.BFragment;
@@ -53,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                WhiteListIntentFactory.askForWhiteList(MainActivity.this, "哈哈哈");
             }
         });
 

@@ -1,5 +1,6 @@
 package com.antiless.daemon.service;
 
+import android.app.Notification;
 import android.app.Service;
 import android.content.ComponentName;
 import android.content.Context;
@@ -10,6 +11,9 @@ import android.os.IBinder;
 import android.os.RemoteException;
 import android.util.Log;
 
+import com.antiless.daemon.BuildConfig;
+import com.antiless.daemon.NotificationClickReceiver;
+import com.antiless.daemon.NotificationUtils;
 import com.antiless.daemon.ServiceUtils;
 
 /**
@@ -42,22 +46,28 @@ public final class RemoteService extends Service {
         try {
             mIsBoundLocalService = this.bindService(new Intent(RemoteService.this, LocalService.class),
                     connection, Context.BIND_ABOVE_CLIENT);
-            new Thread() {
-                @Override
-                public void run() {
-                    printLog("Remote crashing");
-                    try {
-                        Thread.sleep(7 * 1000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                    printLog("Remote crashed");
-                    throw new RuntimeException("Remote crashed");
-                }
-            }.start();
+            if (BuildConfig.DEBUG) {
+                crashIt();
+            }
         }catch (Exception e){
         }
         return START_STICKY;
+    }
+
+    private void crashIt() {
+        new Thread() {
+            @Override
+            public void run() {
+                printLog("Remote crashing");
+                try {
+                    Thread.sleep(7 * 1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                printLog("Remote crashed");
+                throw new RuntimeException("Remote crashed");
+            }
+        }.start();
     }
 
     @Override
@@ -75,13 +85,13 @@ public final class RemoteService extends Service {
     private final class MyBinder extends GuardAidl.Stub {
 
         @Override
-        public void wakeUp(String title, String discription, int iconRes) throws RemoteException {
+        public void wakeUp(int id, String title, String discription, int iconRes) throws RemoteException {
             printLog("wakeUp");
             if(Build.VERSION.SDK_INT < 25){
-//                Intent intent2 = new Intent(getApplicationContext(), NotificationClickReceiver.class);
-//                intent2.setAction(NotificationClickReceiver.CLICK_NOTIFICATION);
-//                Notification notification = NotificationUtils.createNotification(RemoteService.this, title, discription, iconRes, intent2);
-//                RemoteService.this.startForeground(13691, notification);
+                Intent intent2 = new Intent(getApplicationContext(), NotificationClickReceiver.class);
+                intent2.setAction(NotificationClickReceiver.CLICK_NOTIFICATION);
+                Notification notification = NotificationUtils.createNotification(RemoteService.this, title, discription, iconRes, intent2);
+                RemoteService.this.startForeground(id, notification);
             }
         }
 
@@ -106,6 +116,8 @@ public final class RemoteService extends Service {
     };
 
     private static void printLog(String msg) {
-        Log.i("RemoteService", msg);
+        if (BuildConfig.DEBUG) {
+            Log.i("RemoteService", msg);
+        }
     }
 }

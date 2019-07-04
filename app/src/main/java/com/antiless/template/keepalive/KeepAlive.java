@@ -16,7 +16,7 @@ import java.util.ArrayList;
 
 public class KeepAlive {
     public static void init(@NonNull final Application app) {
-        ForegroundNotification notification = new ForegroundNotification("title", "desc", R.mipmap.ic_launcher);
+        ForegroundNotification notification = new ForegroundNotification(12345, "title", "desc", R.mipmap.ic_launcher);
         KeepLive.startWork(app, (new KeepLiveService() {
             @NonNull
             private final ArrayList bitmaps = new ArrayList(100);

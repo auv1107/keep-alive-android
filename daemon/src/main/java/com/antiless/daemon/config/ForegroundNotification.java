@@ -8,6 +8,7 @@ import java.io.Serializable;
  * 默认前台服务样式
  */
 public class ForegroundNotification implements Serializable {
+    private int id;
     private String title;
     private String description;
     private int iconRes;
@@ -15,14 +16,16 @@ public class ForegroundNotification implements Serializable {
     private ForegroundNotification(){
 
     }
-    public ForegroundNotification(String title, String description, int iconRes, ForegroundNotificationClickListener foregroundNotificationClickListener) {
+    public ForegroundNotification(int id, String title, String description, int iconRes, ForegroundNotificationClickListener foregroundNotificationClickListener) {
+        this.id = id;
         this.title = title;
         this.description = description;
         this.iconRes = iconRes;
         this.foregroundNotificationClickListener = foregroundNotificationClickListener;
     }
 
-    public ForegroundNotification(String title, String description, int iconRes) {
+    public ForegroundNotification(int id, String title, String description, int iconRes) {
+        this.id = id;
         this.title = title;
         this.description = description;
         this.iconRes = iconRes;
@@ -63,6 +66,15 @@ public class ForegroundNotification implements Serializable {
         return this;
     }
     /**
+     * 设置图标
+     * @param iconRes 图标
+     * @return ForegroundNotification
+     */
+    public ForegroundNotification id(@NonNull int id){
+        this.id = id;
+        return this;
+    }
+    /**
      * 设置前台通知点击事件
      * @param foregroundNotificationClickListener 前台通知点击回调
      * @return ForegroundNotification
@@ -74,6 +86,10 @@ public class ForegroundNotification implements Serializable {
 
     public String getTitle() {
         return title==null?"":title;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public String getDescription() {

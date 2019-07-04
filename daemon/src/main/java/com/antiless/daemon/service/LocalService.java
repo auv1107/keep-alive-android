@@ -10,6 +10,7 @@ import android.os.IBinder;
 import android.os.RemoteException;
 import android.util.Log;
 
+import com.antiless.daemon.BuildConfig;
 import com.antiless.daemon.KeepLive;
 import com.antiless.daemon.ServiceUtils;
 
@@ -20,7 +21,7 @@ public final class LocalService extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
-        Log.i("LocalService", "onCreate");
+        printLog("onCreate");
         if (mBinder == null) {
             mBinder = new MyBinder();
         }
@@ -28,14 +29,14 @@ public final class LocalService extends Service {
 
     @Override
     public IBinder onBind(Intent intent) {
-        Log.i("LocalService", "onBind");
+        printLog("onBind");
         return mBinder;
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         //绑定守护进程
-        Log.i("LocalService", "onStartCommand");
+        printLog("onStartCommand");
         try {
             mIsBoundRemoteService = this.bindService(new Intent(this, RemoteService.class), connection, Context.BIND_ABOVE_CLIENT);
             //隐藏服务通知
@@ -53,7 +54,7 @@ public final class LocalService extends Service {
     private final class MyBinder extends GuardAidl.Stub {
 
         @Override
-        public void wakeUp(String title, String discription, int iconRes) throws RemoteException {
+        public void wakeUp(int id, String title, String discription, int iconRes) throws RemoteException {
 
         }
     }
@@ -62,7 +63,7 @@ public final class LocalService extends Service {
 
         @Override
         public void onServiceDisconnected(ComponentName name) {
-            Log.i("LocalService", "onServiceDisconnected");
+            printLog("onServiceDisconnected");
             if (ServiceUtils.isServiceRunning(getApplicationContext(), LocalService.class.getName())){
                 Intent remoteService = new Intent(LocalService.this,
                         RemoteService.class);
@@ -75,14 +76,22 @@ public final class LocalService extends Service {
 
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
-            Log.i("LocalService", "onServiceConnected");
+            printLog("onServiceConnected");
+            try {
+                if (mBinder != null && KeepLive.foregroundNotification != null) {
+                    GuardAidl guardAidl = GuardAidl.Stub.asInterface(service);
+                    guardAidl.wakeUp(KeepLive.foregroundNotification.getId(), KeepLive.foregroundNotification.getTitle(), KeepLive.foregroundNotification.getDescription(), KeepLive.foregroundNotification.getIconRes());
+                }
+            } catch (RemoteException e) {
+                e.printStackTrace();
+            }
         }
     };
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        Log.i("LocalService", "onDestroy");
+        printLog("onDestroy");
         if (connection != null){
             try {
                 if (mIsBoundRemoteService){
@@ -92,6 +101,12 @@ public final class LocalService extends Service {
         }
         if (KeepLive.keepLiveService != null) {
             KeepLive.keepLiveService.onStop();
+        }
+    }
+
+    private void printLog(String msg) {
+        if (BuildConfig.DEBUG) {
+            Log.i("LocalService", msg);
         }
     }
 }

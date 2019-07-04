@@ -52,7 +52,7 @@ public final class JobHandlerService extends JobService {
                 Intent intent2 = new Intent(getApplicationContext(), NotificationClickReceiver.class);
                 intent2.setAction(NotificationClickReceiver.CLICK_NOTIFICATION);
                 Notification notification = NotificationUtils.createNotification(this, KeepLive.foregroundNotification.getTitle(), KeepLive.foregroundNotification.getDescription(), KeepLive.foregroundNotification.getIconRes(), intent2);
-                startForeground(13691, notification);
+                startForeground(KeepLive.foregroundNotification.getId(), notification);
             }
         }
         //启动本地服务
