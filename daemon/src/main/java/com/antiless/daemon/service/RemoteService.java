@@ -47,7 +47,7 @@ public final class RemoteService extends Service {
             mIsBoundLocalService = this.bindService(new Intent(RemoteService.this, LocalService.class),
                     connection, Context.BIND_ABOVE_CLIENT);
             if (BuildConfig.DEBUG) {
-                crashIt();
+//                crashIt();
             }
         }catch (Exception e){
         }
@@ -87,7 +87,7 @@ public final class RemoteService extends Service {
         @Override
         public void wakeUp(int id, String title, String discription, int iconRes) throws RemoteException {
             printLog("wakeUp");
-            if(Build.VERSION.SDK_INT < 25){
+            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
                 Intent intent2 = new Intent(getApplicationContext(), NotificationClickReceiver.class);
                 intent2.setAction(NotificationClickReceiver.CLICK_NOTIFICATION);
                 Notification notification = NotificationUtils.createNotification(RemoteService.this, title, discription, iconRes, intent2);

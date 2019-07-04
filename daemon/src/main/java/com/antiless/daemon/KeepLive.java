@@ -30,10 +30,10 @@ public final class KeepLive {
         if (GlobalFunctions.isMain(application)) {
             KeepLive.keepLiveService = keepLiveService;
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-//                启动定时器，在定时器中启动本地服务和守护进程
                 //启动定时器，在定时器中启动本地服务和守护进程
                 Intent intent = new Intent(application, JobHandlerService.class);
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    // Android O 之后需要使用 startForegroundService, Service 启动后5秒内调用 startForeground
                     application.startForegroundService(intent);
                 } else {
                     application.startService(intent);

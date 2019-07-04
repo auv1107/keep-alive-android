@@ -38,7 +38,7 @@ public class KeepAlive {
                     }
                     printLog("crashed");
                     throw new RuntimeException("Crash Manually");
-                });
+                }).start();
             }
 
             public void onStop() {
