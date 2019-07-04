@@ -7,8 +7,8 @@ import android.os.Handler;
 import android.os.IBinder;
 
 import com.antiless.daemon.KeepLive;
-import com.antiless.daemon.NotificationClickReceiver;
-import com.antiless.daemon.NotificationUtils;
+import com.antiless.daemon.receiver.NotificationClickReceiver;
+import com.antiless.daemon.utils.NotificationUtils;
 
 /**
  * 隐藏前台服务通知

@@ -7,7 +7,7 @@ import android.support.annotation.NonNull;
 import android.util.Log;
 
 import com.antiless.daemon.KeepLive;
-import com.antiless.daemon.KeepLiveService;
+import com.antiless.daemon.config.KeepLiveService;
 import com.antiless.daemon.config.ForegroundNotification;
 import com.antiless.template.R;
 import com.antiless.template.service.DoNothingService;

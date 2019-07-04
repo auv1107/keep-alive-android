@@ -12,7 +12,7 @@ import android.util.Log;
 
 import com.antiless.daemon.BuildConfig;
 import com.antiless.daemon.KeepLive;
-import com.antiless.daemon.ServiceUtils;
+import com.antiless.daemon.utils.ServiceUtils;
 
 public final class LocalService extends Service {
     private MyBinder mBinder;

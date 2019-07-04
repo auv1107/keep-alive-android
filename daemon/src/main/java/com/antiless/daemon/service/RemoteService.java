@@ -12,9 +12,9 @@ import android.os.RemoteException;
 import android.util.Log;
 
 import com.antiless.daemon.BuildConfig;
-import com.antiless.daemon.NotificationClickReceiver;
-import com.antiless.daemon.NotificationUtils;
-import com.antiless.daemon.ServiceUtils;
+import com.antiless.daemon.receiver.NotificationClickReceiver;
+import com.antiless.daemon.utils.NotificationUtils;
+import com.antiless.daemon.utils.ServiceUtils;
 
 /**
  * 守护进程

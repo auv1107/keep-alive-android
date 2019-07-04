@@ -6,6 +6,7 @@ import android.os.Build;
 import android.support.annotation.NonNull;
 
 import com.antiless.daemon.config.ForegroundNotification;
+import com.antiless.daemon.config.KeepLiveService;
 import com.antiless.daemon.service.JobHandlerService;
 import com.antiless.daemon.service.LocalService;
 import com.antiless.daemon.service.RemoteService;

@@ -12,9 +12,9 @@ import android.os.Build;
 import android.support.annotation.RequiresApi;
 
 import com.antiless.daemon.KeepLive;
-import com.antiless.daemon.NotificationClickReceiver;
-import com.antiless.daemon.NotificationUtils;
-import com.antiless.daemon.ServiceUtils;
+import com.antiless.daemon.receiver.NotificationClickReceiver;
+import com.antiless.daemon.utils.NotificationUtils;
+import com.antiless.daemon.utils.ServiceUtils;
 
 /**
  * 定时器

@@ -1,6 +1,4 @@
-package com.antiless.daemon;
-
-import android.content.Context;
+package com.antiless.daemon.config;
 
 /**
  * 需要保活的服务
