@@ -7,43 +7,56 @@
     android:orientation="vertical"
     tools:context="com.antiless.template.MainActivity">
 
-    <!-- Toolbar -->
-    <!-- app:elevation = "0dp" // 去除阴影效果 -->
-    <android.support.design.widget.AppBarLayout
-        android:id="@+id/app_bar"
+    <TextView
+        android:id="@+id/whiteList"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:elevation = "0dp"
-        android:theme="@style/AppTheme.AppBarOverlay">
-
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:popupTheme="@style/AppTheme.PopupOverlay" />
-
-    </android.support.design.widget.AppBarLayout>
-
-    <!-- TabLayout属性
-        app:tabIndicatorColor="" // 下方滚动的下划线颜色
-        app:tabSelectedTextColor="" // Tab被选中后,文字的颜色
-        app:tabTextColor="" // Tab默认的文字颜色 -->
-    <android.support.design.widget.TabLayout
-        android:id="@+id/tabLayout"
+        android:layout_height="72dp"
+        android:text="加入白名单(设备不同、实际效果不同)"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:layout_marginTop="120dp"
+        />
+    <TextView
+        android:id="@+id/activeDevicePolicy"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#659D43"
-        app:tabIndicatorColor="#ffffff"
-        app:tabSelectedTextColor="#ffffff"
-        app:tabTextColor="#C0D6B1"
-        app:tabMode="scrollable" />
-
-    <android.support.v4.view.ViewPager
-        android:id="@+id/viewPager"
+        android:layout_height="72dp"
+        android:text="激活设备管理权限"
+        android:gravity="center"
+        android:textSize="20sp"
+        />
+    <TextView
+        android:id="@+id/unActiveDevicePolicy"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:background="#EEEEEE" />
+        android:layout_height="72dp"
+        android:text="取消设备管理权限"
+        android:gravity="center"
+        android:textSize="20sp"
+        />
+    <TextView
+        android:id="@+id/openKeepLive"
+        android:layout_width="match_parent"
+        android:layout_height="72dp"
+        android:text="开启守护进程"
+        android:gravity="center"
+        android:textSize="20sp"
+        />
+    <TextView
+        android:id="@+id/makeCrash"
+        android:layout_width="match_parent"
+        android:layout_height="72dp"
+        android:text="手动崩溃"
+        android:gravity="center"
+        android:textSize="20sp"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="72dp"
+        android:layout_marginTop="120dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:text="手动崩溃后使用下面的命令查看主进程是否被拉起：\n $ adb shell ps | grep com.antiless.template"
+        android:gravity="start"
+        android:textSize="16sp"
+        />
 
 </LinearLayout>

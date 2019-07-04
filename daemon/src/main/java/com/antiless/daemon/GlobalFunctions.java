@@ -1,16 +1,15 @@
 package com.antiless.daemon;
 
 import android.app.ActivityManager;
-import android.app.Application;
 import android.content.Context;
 
 import java.util.List;
 
 public class GlobalFunctions {
-    public static boolean isMain(Application application) {
+    public static boolean isMain(Context context) {
         int pid = android.os.Process.myPid();
         String processName = "";
-        ActivityManager mActivityManager = (ActivityManager) application.getSystemService(Context.ACTIVITY_SERVICE);
+        ActivityManager mActivityManager = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
         List<ActivityManager.RunningAppProcessInfo> runningAppProcessInfos = mActivityManager.getRunningAppProcesses();
         if (runningAppProcessInfos != null) {
             for (ActivityManager.RunningAppProcessInfo appProcess : mActivityManager.getRunningAppProcesses()) {
@@ -19,7 +18,7 @@ public class GlobalFunctions {
                     break;
                 }
             }
-            String packageName = application.getPackageName();
+            String packageName = context.getPackageName();
             if (processName.equals(packageName)) {
                 return true;
             }

@@ -23,7 +23,7 @@
 
         <!--设备管理-->
         <receiver
-            android:name=".DevicePolicyReceiver"
+            android:name=".receiver.DevicePolicyReceiver"
             android:permission="android.permission.BIND_DEVICE_ADMIN">
             <meta-data
                 android:name="android.app.device_admin"

@@ -69,7 +69,7 @@ public class WhiteListIntentFactory {
     protected static List<IntentWrapper> sIntentWrapperList;
     protected static Application sApp;
 
-    public static List<IntentWrapper> getIntentWrapperList(Context context) {
+    public static List<IntentWrapper> getIntentWrapperList() {
         if (sIntentWrapperList == null) {
 
 //            if (!DaemonEnv.sInitialized) return new ArrayList<>();
@@ -217,7 +217,7 @@ public class WhiteListIntentFactory {
     public static List<IntentWrapper> askForWhiteList(final Activity a, String reason) {
         List<IntentWrapper> showed = new ArrayList<>();
         if (reason == null) reason = "核心服务的持续运行";
-        List<IntentWrapper> intentWrapperList = getIntentWrapperList(a);
+        List<IntentWrapper> intentWrapperList = getIntentWrapperList();
         for (final IntentWrapper iw : intentWrapperList) {
             //如果本机上没有能处理这个Intent的Activity，说明不是对应的机型，直接忽略进入下一次循环。
             if (!iw.doesActivityExists(sApp)) continue;

@@ -40,7 +40,7 @@ public class DeviceManager {
     /**
      * 移除程序 如果不移除程序 APP无法被卸载
      */
-    public void onRemoveActivate() {
+    public void unActivate() {
         devicePolicyManager.removeActiveAdmin(componentName);
 
     }

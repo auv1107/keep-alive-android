@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.antiless.daemon.KeepLive;
 import com.antiless.daemon.config.KeepLiveService;
@@ -15,20 +16,14 @@ import com.antiless.template.service.DoNothingService;
 import java.util.ArrayList;
 
 public class KeepAlive {
-    public static void init(@NonNull final Application app) {
+    public static void init(@NonNull final Context context) {
         ForegroundNotification notification = new ForegroundNotification(12345, "title", "desc", R.mipmap.ic_launcher);
-        KeepLive.startWork(app, (new KeepLiveService() {
-            @NonNull
-            private final ArrayList bitmaps = new ArrayList(100);
-
-            @NonNull
-            public final ArrayList getBitmaps() {
-                return this.bitmaps;
-            }
+        KeepLive.startWork(context, (new KeepLiveService() {
 
             public void onWorking() {
                 printLog("onWorking");
-                app.startService(new Intent(app, DoNothingService.class));
+                context.startService(new Intent(context, DoNothingService.class));
+/*
                 new Thread(() -> {
                     printLog("crashing");
                     try {
@@ -39,6 +34,7 @@ public class KeepAlive {
                     printLog("crashed");
                     throw new RuntimeException("Crash Manually");
                 }).start();
+*/
             }
 
             public void onStop() {
