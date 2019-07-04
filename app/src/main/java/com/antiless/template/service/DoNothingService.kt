@@ -3,10 +3,12 @@ package com.antiless.template.service
 import android.app.Service
 import android.content.Intent
 import android.content.res.Configuration
+import android.graphics.Bitmap
 import android.os.IBinder
-import android.os.Process
-import com.antiless.template.printLog
+import android.util.Log
 import java.util.*
+import kotlin.collections.ArrayList
+import kotlin.concurrent.thread
 
 class DoNothingService : Service() {
     override fun onBind(intent: Intent?): IBinder? {
@@ -14,14 +16,25 @@ class DoNothingService : Service() {
         return null
     }
 
-    var timer = Timer("DoNothingService")
+    val bitmaps = ArrayList<Bitmap>()
+
+    var timer: Timer? = null
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         printLog("onStartCommand")
-        timer.schedule(object : TimerTask() {
-            override fun run() {
-                printLog("still running")
-            }
-        }, 0, 3000)
+
+        if (timer == null) {
+            timer = Timer("DoNothingService")
+            timer?.schedule(object : TimerTask() {
+                override fun run() {
+                    printLog("still running")
+                }
+            }, 0, 3000)
+        }
+        thread {
+//            for (i in 0 until 100) {
+//                bitmaps[i] = BitmapFactory.decodeResource(resources, R.drawable.fc35093c16447a4a88649f712c339b36fss)
+//            }
+        }
         return START_STICKY
     }
 
@@ -32,7 +45,7 @@ class DoNothingService : Service() {
 
     override fun onDestroy() {
         super.onDestroy()
-        timer.cancel()
+        timer?.cancel()
         printLog("onDestroy")
     }
 
@@ -69,5 +82,9 @@ class DoNothingService : Service() {
     override fun onUnbind(intent: Intent?): Boolean {
         printLog("onUnbind")
         return super.onUnbind(intent)
+    }
+
+    private fun printLog(msg: String) {
+        Log.i("DoNothingService", msg)
     }
 }
