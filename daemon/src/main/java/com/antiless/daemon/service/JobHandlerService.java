@@ -1,4 +1,4 @@
-package com.antiless.template.service;
+package com.antiless.daemon.service;
 
 import android.app.Notification;
 import android.app.job.JobInfo;
@@ -11,10 +11,10 @@ import android.content.Intent;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 
-import com.antiless.template.KeepLive;
-import com.antiless.template.NotificationClickReceiver;
-import com.antiless.template.NotificationUtils;
-import com.antiless.template.ServiceUtils;
+import com.antiless.daemon.KeepLive;
+import com.antiless.daemon.NotificationClickReceiver;
+import com.antiless.daemon.NotificationUtils;
+import com.antiless.daemon.ServiceUtils;
 
 /**
  * 定时器
@@ -65,7 +65,7 @@ public final class JobHandlerService extends JobService {
 
     @Override
     public boolean onStartJob(JobParameters jobParameters) {
-        if (!ServiceUtils.isServiceRunning(getApplicationContext(), "com.antiless.template.service.LocalService") || !ServiceUtils.isRunningTaskExist(getApplicationContext(), getPackageName() + ":remote")) {
+        if (!ServiceUtils.isServiceRunning(getApplicationContext(), LocalService.class.getName()) || !ServiceUtils.isRunningTaskExist(getApplicationContext(), getPackageName() + ":remote")) {
             startService(this);
         }
         return false;
@@ -73,7 +73,7 @@ public final class JobHandlerService extends JobService {
 
     @Override
     public boolean onStopJob(JobParameters jobParameters) {
-        if (!ServiceUtils.isServiceRunning(getApplicationContext(), "com.antiless.template.service.LocalService") || !ServiceUtils.isRunningTaskExist(getApplicationContext(), getPackageName() + ":remote")) {
+        if (!ServiceUtils.isServiceRunning(getApplicationContext(), LocalService.class.getName()) || !ServiceUtils.isRunningTaskExist(getApplicationContext(), getPackageName() + ":remote")) {
             startService(this);
         }
         return false;

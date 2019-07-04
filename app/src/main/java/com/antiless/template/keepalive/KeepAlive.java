@@ -6,10 +6,10 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
-import com.antiless.template.KeepLive;
-import com.antiless.template.KeepLiveService;
+import com.antiless.daemon.KeepLive;
+import com.antiless.daemon.KeepLiveService;
+import com.antiless.daemon.config.ForegroundNotification;
 import com.antiless.template.R;
-import com.antiless.template.config.ForegroundNotification;
 import com.antiless.template.service.DoNothingService;
 
 import java.util.ArrayList;

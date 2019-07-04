@@ -1,4 +1,4 @@
-package com.antiless.template.service;
+package com.antiless.daemon.service;
 
 import android.app.Service;
 import android.content.ComponentName;
@@ -10,8 +10,8 @@ import android.os.IBinder;
 import android.os.RemoteException;
 import android.util.Log;
 
-import com.antiless.template.KeepLive;
-import com.antiless.template.ServiceUtils;
+import com.antiless.daemon.KeepLive;
+import com.antiless.daemon.ServiceUtils;
 
 public final class LocalService extends Service {
     private MyBinder mBinder;
@@ -63,7 +63,7 @@ public final class LocalService extends Service {
         @Override
         public void onServiceDisconnected(ComponentName name) {
             Log.i("LocalService", "onServiceDisconnected");
-            if (ServiceUtils.isServiceRunning(getApplicationContext(), "com.antiless.template.service.LocalService")){
+            if (ServiceUtils.isServiceRunning(getApplicationContext(), LocalService.class.getName())){
                 Intent remoteService = new Intent(LocalService.this,
                         RemoteService.class);
                 LocalService.this.startService(remoteService);

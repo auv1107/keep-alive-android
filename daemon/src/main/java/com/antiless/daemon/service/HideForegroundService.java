@@ -1,4 +1,4 @@
-package com.antiless.template.service;
+package com.antiless.daemon.service;
 
 import android.app.Notification;
 import android.app.Service;
@@ -6,9 +6,9 @@ import android.content.Intent;
 import android.os.Handler;
 import android.os.IBinder;
 
-import com.antiless.template.KeepLive;
-import com.antiless.template.NotificationClickReceiver;
-import com.antiless.template.NotificationUtils;
+import com.antiless.daemon.KeepLive;
+import com.antiless.daemon.NotificationClickReceiver;
+import com.antiless.daemon.NotificationUtils;
 
 /**
  * 隐藏前台服务通知

@@ -1,4 +1,4 @@
-package com.antiless.template.service;
+package com.antiless.daemon.service;
 
 interface GuardAidl {
     //相互唤醒服务

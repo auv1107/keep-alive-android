@@ -1,4 +1,4 @@
-package com.antiless.template;
+package com.antiless.daemon;
 
 import android.app.ActivityManager;
 import android.app.Application;

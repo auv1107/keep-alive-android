@@ -1,4 +1,4 @@
-package com.antiless.template;
+package com.antiless.daemon;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;

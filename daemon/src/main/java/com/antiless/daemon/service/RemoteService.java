@@ -1,4 +1,4 @@
-package com.antiless.template.service;
+package com.antiless.daemon.service;
 
 import android.app.Service;
 import android.content.ComponentName;
@@ -7,11 +7,10 @@ import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.Build;
 import android.os.IBinder;
-import android.os.PowerManager;
 import android.os.RemoteException;
 import android.util.Log;
 
-import com.antiless.template.ServiceUtils;
+import com.antiless.daemon.ServiceUtils;
 
 /**
  * 守护进程

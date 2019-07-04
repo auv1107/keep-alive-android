@@ -1,4 +1,4 @@
-package com.antiless.template;
+package com.antiless.daemon;
 
 import android.app.Notification;
 import android.app.NotificationChannel;

@@ -1,4 +1,4 @@
-package com.antiless.template.config;
+package com.antiless.daemon.config;
 
 import android.support.annotation.NonNull;
 

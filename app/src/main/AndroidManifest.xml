@@ -20,11 +20,6 @@
         </activity>
         <service android:name=".service.DoNothingService"
             android:process=":donothing"/>
-        <service android:name=".service.LocalService" />
-        <service android:name=".service.RemoteService" android:process=":remote" />
-        <service android:name=".service.JobHandlerService"
-            android:permission="android.permission.BIND_JOB_SERVICE" />
-        <service android:name=".service.HideForegroundService" />
     </application>
 
 </manifest>
